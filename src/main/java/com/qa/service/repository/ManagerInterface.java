@@ -9,7 +9,7 @@ public interface ManagerInterface
 {
 	public String createAccount(Account account);
 
-	public List<Account> findAllAccounts();
+	public String findAllAccounts();
 	
 	public Account findAccount(int accountNumber);
 	

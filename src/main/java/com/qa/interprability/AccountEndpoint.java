@@ -1,6 +1,7 @@
 package com.qa.interprability;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -20,28 +21,29 @@ public class AccountEndpoint {
 	@Inject
 	private AccountManager accountManager;
 
-	@Path("/json")
+	@Path("/retrieve")
 	@GET
 	@Produces({ "application/json" })
 	public String getAllAccounts() {
-		return new JSONObject(accountManager.findAllAccounts()).toString();
+		return accountManager.findAllAccounts();
 	}
 
-	@Path("/json")
+	@Path("/add")
 	@POST
 	@Produces({ "application/json" })
-	public String addAccount(String forename, String surname, int accountNumber) {
-		return accountManager.createAccount(new Account(forename, surname, accountNumber));
+	@Consumes({ "application/json" })
+	public String addAccount(Account account) {
+		return accountManager.createAccount(account);
 	}
 
-	@Path("/json/{id}")
+	@Path("/update/{id}")
 	@PUT
 	@Produces({ "application/json" })
 	public String updateAccount(@PathParam("id") int id, String forename, String surname) {
 		return accountManager.updateAccount(id, forename, surname);
 	}
 
-	@Path("/json/{id}")
+	@Path("/delete/{id}")
 	@DELETE
 	@Produces({ "application/json" })
 	public String deleteAccount(@PathParam("id") int id) {
