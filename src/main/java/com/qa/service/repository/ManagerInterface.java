@@ -13,8 +13,8 @@ public interface ManagerInterface
 	
 	public Account findAccount(int accountNumber);
 	
-	public boolean updateAccount(int accountNumber, String forenameUpdate, String surnameUpdate); 
+	public String updateAccount(int accountNumber, String forenameUpdate, String surnameUpdate); 
 	
-	public boolean deleteAccount(int accountNumber);
+	public String deleteAccount(int accountNumber);
 
 }

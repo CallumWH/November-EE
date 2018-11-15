@@ -43,7 +43,7 @@ public class AccountManagerAlternative implements ManagerInterface
 	}
 	
 	@Transactional(REQUIRED)
-	public boolean updateAccount(int accountNumber, String newForename, String newSurname)
+	public String updateAccount(int accountNumber, String newForename, String newSurname)
 	{
 		Account foundAccount = findAccount(accountNumber);
 		foundAccount.setForename(newForename);
@@ -51,15 +51,15 @@ public class AccountManagerAlternative implements ManagerInterface
 		
 		hmap.put(accountNumber, foundAccount);
 		
-		return true;
+		return new String(accountNumber + " has been updated");
 	}
 	
 	@Transactional(REQUIRED)
-	public boolean deleteAccount(int accountNumber)
+	public String deleteAccount(int accountNumber)
 	{
 		hmap.remove(accountNumber);
 		
-		return true;
+		return new String(accountNumber + " has been deleted");
 	}
 
 }
