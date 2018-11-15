@@ -9,8 +9,8 @@ import javax.persistence.Id;
 @Entity
 public class Account
 {
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
 	
 	@Column(length = 20)
 	private String forename;
@@ -19,6 +19,9 @@ public class Account
 	@Column(length = 10)
 	private int accountNumber;
 
+	public Account()
+	{
+	}
 	public String getForename()
 	{
 		return forename;
@@ -44,8 +47,10 @@ public class Account
 		return accountNumber;
 	}
 	
-	public Account(String forename, String surname, int accountNumber)
+	public Account(long id, String forename, String surname, int accountNumber)
 	{
+		super();
+		this.id = id;
 		this.forename = forename;
 		this.surname = surname;
 		this.accountNumber = accountNumber;
